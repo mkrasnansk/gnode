@@ -3,12 +3,14 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
-const port = process.env.PORT || 4000;
 const { response } = require("express");
-const multiparty = require("multiparty");
 require("dotenv").config();
 
-app.use(cors("*"));
+const port = process.env.PORT || 4000;
+
+app.use(cors({
+   origin: ['https://www.owee.sk','https://www.tiendapepe.sk', 'http://localhost:3000']
+}));
 app.use(express.urlencoded());
 app.use(bodyParser.json());
 
