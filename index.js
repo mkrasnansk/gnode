@@ -6,7 +6,7 @@ const app = express();
 const { response } = require("express");
 require("dotenv").config();
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 443;
 
 app.use(cors({
    origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app']
