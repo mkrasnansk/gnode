@@ -9,7 +9,7 @@ require("dotenv").config();
 const port = process.env.PORT || 80  ;
 
 const corsOptions = {
-   origin: ['*.owee-15664.firebaseapp.com','*.owee-15664.web.app','*.owee.sk','*.tiendapepe.sk'],
+   origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app','https://www.owee.sk','https://www.tiendapepe.sk'],
    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
  }
 
