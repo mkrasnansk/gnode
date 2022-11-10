@@ -9,7 +9,7 @@ require("dotenv").config();
 const port = process.env.PORT || 80  ;
 
 app.use(cors({
-   origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app','owee-15664.firebaseapp.com','owee-15664.web.app']
+   origin: ['*.owee-15664.firebaseapp.com','*.owee-15664.web.app','*.owee.sk','*.tiendapepe.sk']
 }));
 app.use(express.urlencoded());
 app.use(bodyParser.json());
