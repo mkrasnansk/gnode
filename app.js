@@ -6,10 +6,10 @@ const app = express();
 const { response } = require("express");
 require("dotenv").config();
 
-const port = process.env.PORT || 443;
+const port = process.env.PORT || 80  ;
 
 app.use(cors({
-   origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app']
+   origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app','owee-15664.firebaseapp.com','owee-15664.web.app']
 }));
 app.use(express.urlencoded());
 app.use(bodyParser.json());
