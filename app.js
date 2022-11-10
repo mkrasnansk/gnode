@@ -8,6 +8,11 @@ require("dotenv").config();
 
 const port = process.env.PORT || 80  ;
 
+const corsOptions = {
+   origin: ['*.owee-15664.firebaseapp.com','*.owee-15664.web.app','*.owee.sk','*.tiendapepe.sk'],
+   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+ }
+
 app.use(cors({
    origin: ['*.owee-15664.firebaseapp.com','*.owee-15664.web.app','*.owee.sk','*.tiendapepe.sk']
 }));
@@ -24,7 +29,7 @@ app.use((req, res, next) => {
    next();
  });
 
-app.post("/mail", function (req, res) {
+app.post("/mail", cors(corsOptions), function (req, res) {
    console.log(process.env.OAUTH_REFRESH_TOKEN);
 
    let data = req.body;
