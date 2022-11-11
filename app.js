@@ -25,7 +25,6 @@ app.use((req, res, next) => {
      "Access-Control-Allow-Methods",
      "POST"
    );
-   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
    next();
  });
 
