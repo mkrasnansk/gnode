@@ -6,41 +6,32 @@ const app = express();
 const { response } = require("express");
 require("dotenv").config();
 
-const port = process.env.PORT || 80  
-
-const corsOptions = {
-   origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app','https://www.owee.sk','https://www.tiendapepe.sk'],
-   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
- }
-
-app.use(cors({
-   origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app','https://www.owee.sk','https://www.tiendapepe.sk'],
-}));
 app.use(express.urlencoded());
 app.use(bodyParser.json());
 
+const corsOptions = {
+   origin: ["https://www.owee.sk", "www.owee.sk", "owee.sk", "https://owee.sk", "https://owee-15664.firebaseapp.com", "https://owee-15664.web.app", "https://www.tiendapepe.sk"],
+};
+app.use(cors(corsOptions));
+
 app.use((req, res, next) => {
-   res.setHeader("Access-Control-Allow-Origin", "*")
-   res.setHeader(
-     "Access-Control-Allow-Methods",
-     "POST"
-   );
-   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
-   next()
- });
+   res.setHeader("Access-Control-Allow-Origin", "*");
+   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+   res.setHeader("Access-Control-Allow-Methods", "Content-Type", "Authorization");
+   next();
+});
 
 app.post("/mail", cors(corsOptions), function (req, res) {
-   console.log(process.env.OAUTH_REFRESH_TOKEN);
-
    let data = req.body;
    if (!data.url) {
-      res.status(500).send({ website: data.url, error: "Missing url" })
-      return
+      res.status(500).send({ website: data.url, error: "Missing url" });
+      return res;
    } else {
-      res.status(200).send({ website: data.url, websiteStatus: response.status })
+      res.status(200).send({ website: data.url, websiteStatus: response.status });
       if (response.status !== 200) {
-         sendMail(data, response.status)
+         sendMail(data, response.status);
       }
+      return res;
    }
 });
 
@@ -72,7 +63,8 @@ const sendMail = (data, status) => {
       }
    });
 };
+const port = process.env.PORT || 80;
 
 app.listen(port, () => {
-   console.log(`nodemailerProject is listening at http://localhost:${port}`)
+   console.log(`nodemailerProject is listening at http://localhost:${port}`);
 });
