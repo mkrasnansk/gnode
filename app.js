@@ -6,7 +6,7 @@ const app = express();
 const { response } = require("express");
 require("dotenv").config();
 
-const port = process.env.PORT || 80  ;
+const port = process.env.PORT || 80  
 
 const corsOptions = {
    origin: ['https://owee-15664.firebaseapp.com','https://owee-15664.web.app','https://www.owee.sk','https://www.tiendapepe.sk'],
@@ -20,12 +20,13 @@ app.use(express.urlencoded());
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-   res.setHeader("Access-Control-Allow-Origin", "*");
+   res.setHeader("Access-Control-Allow-Origin", "*")
    res.setHeader(
      "Access-Control-Allow-Methods",
      "POST"
    );
-   next();
+   res.setHeader("Access-Control-Allow-Headers", "Content-Type")
+   next()
  });
 
 app.post("/mail", cors(corsOptions), function (req, res) {
@@ -33,12 +34,12 @@ app.post("/mail", cors(corsOptions), function (req, res) {
 
    let data = req.body;
    if (!data.url) {
-      res.status(500).send({ website: data.url, error: "Missing url" });
-      return;
+      res.status(500).send({ website: data.url, error: "Missing url" })
+      return
    } else {
-      res.status(200).send({ website: data.url, websiteStatus: response.status });
+      res.status(200).send({ website: data.url, websiteStatus: response.status })
       if (response.status !== 200) {
-         sendMail(data, response.status);
+         sendMail(data, response.status)
       }
    }
 });
@@ -73,5 +74,5 @@ const sendMail = (data, status) => {
 };
 
 app.listen(port, () => {
-   console.log(`nodemailerProject is listening at http://localhost:${port}`);
+   console.log(`nodemailerProject is listening at http://localhost:${port}`)
 });
