@@ -10,7 +10,8 @@ app.use(express.urlencoded());
 app.use(bodyParser.json());
 
 const corsOptions = {
-   origin: ["https://www.owee.sk", "www.owee.sk", "owee.sk", "https://owee.sk", "https://owee-15664.firebaseapp.com", "https://owee-15664.web.app", "https://www.tiendapepe.sk"],
+   origin: "*",
+   // origin: ["https://www.owee.sk", "www.owee.sk", "owee.sk", "https://owee.sk", "https://owee-15664.firebaseapp.com", "https://owee-15664.web.app", "https://www.tiendapepe.sk"],
 };
 app.use(cors(corsOptions));
 
